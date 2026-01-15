@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\Event;
@@ -19,8 +20,7 @@ final class Foul extends MatchEvent
         public int                $minute,
         public int                $second,
         public ?DateTimeInterface $timestamp = new DateTimeImmutable(),
-    )
-    {
+    ) {
         parent::__construct(null, $matchId, $teamId, $minute, $this->second, $timestamp);
     }
 
@@ -49,7 +49,7 @@ final class Foul extends MatchEvent
             'suffered_by' => $this->sufferedBy->value(),
             'minute' => $this->minute,
             'second' => $this->second,
-            'timestamp' => $this->timestamp->format('Y-m-d H:i:s')
+            'timestamp' => $this->timestamp->format('Y-m-d H:i:s'),
         ];
     }
 }

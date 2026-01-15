@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\Event;
@@ -8,6 +9,7 @@ use App\Domain\Player\VO\PlayerId;
 use App\Domain\Team\VO\TeamId;
 use DateTimeInterface;
 use DateTimeImmutable;
+
 final class Goal extends MatchEvent
 {
     public function __construct(
@@ -48,7 +50,7 @@ final class Goal extends MatchEvent
             'assist_id' => $this->assistId?->value(),
             'minute' => $this->minute,
             'second' => $this->second,
-            'timestamp' => $this->timestamp->format('Y-m-d H:i:s')
+            'timestamp' => $this->timestamp->format('Y-m-d H:i:s'),
         ];
     }
 }

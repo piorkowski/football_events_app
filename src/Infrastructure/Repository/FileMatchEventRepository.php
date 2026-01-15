@@ -27,7 +27,7 @@ final class FileMatchEventRepository implements MatchEventRepositoryInterface, M
     public function save(MatchEvent $event): void
     {
         $data = $event->toArray();
-        $line = json_encode($data) . PHP_EOL;
+        $line = json_encode($data, JSON_THROW_ON_ERROR) . PHP_EOL;
 
         file_put_contents($this->filePath, $line, FILE_APPEND | LOCK_EX);
     }
@@ -39,7 +39,7 @@ final class FileMatchEventRepository implements MatchEventRepositoryInterface, M
     {
         $allEvents = $this->findAll();
 
-        return array_filter($allEvents, function(MatchEvent $event) use ($matchId) {
+        return array_filter($allEvents, function (MatchEvent $event) use ($matchId) {
             return $event->matchId()->equals($matchId);
         });
     }
@@ -101,7 +101,7 @@ final class FileMatchEventRepository implements MatchEventRepositoryInterface, M
                     timestamp: new DateTimeImmutable($data['timestamp'])
                 )
             };
-        }catch (\Throwable $e) {
+        } catch (\Throwable $e) {
             throw new InfrastructureException('Unable to hydrate event', 0, $e);
         }
     }
@@ -110,7 +110,7 @@ final class FileMatchEventRepository implements MatchEventRepositoryInterface, M
     {
         $directory = dirname($this->filePath);
         if (!is_dir($directory)) {
-            mkdir($directory, 0777, true);
+            mkdir($directory, 0o777, true);
         }
     }
 }

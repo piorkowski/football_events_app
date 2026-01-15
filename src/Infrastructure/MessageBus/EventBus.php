@@ -1,10 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
-namespace App\Application\EventBus;
+namespace App\Infrastructure\MessageBus;
+
+use App\Application\MessageBus\EventBusInterface;
 use App\Domain\Event\MatchEvent;
 
-final class InMemoryEventBus implements EventBusInterface
+final class EventBus implements EventBusInterface
 {
     private array $listeners = [];
 

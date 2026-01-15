@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Application\Query\Handler;
 
+use App\Application\MessageBus\QueryHandlerInterface;
 use App\Application\Query\GetMatchStatisticsQuery;
 use App\Domain\Match\VO\MatchId;
 use App\Domain\Statistics\StatisticsRepositoryInterface;
-use App\Infrastructure\MessageBus\QueryHandlerInterface;
 
 final readonly class GetMatchStatisticsHandler implements QueryHandlerInterface
 {
@@ -22,7 +23,7 @@ final readonly class GetMatchStatisticsHandler implements QueryHandlerInterface
         if ($statistics === null) {
             return [
                 'match_id' => $query->matchStatisticsDTO->matchId,
-                'teams' => []
+                'teams' => [],
             ];
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\Statistics;
@@ -11,9 +12,7 @@ final class MatchStatistics
     public function __construct(
         private readonly MatchId $matchId,
         private array            $teamStats = []
-    )
-    {
-    }
+    ) {}
 
     public function incrementGoals(TeamId $teamId): void
     {
@@ -32,7 +31,7 @@ final class MatchStatistics
         if (!isset($this->teamStats[$teamIdValue])) {
             $this->teamStats[$teamIdValue] = [
                 'goals' => 0,
-                'fouls' => 0
+                'fouls' => 0,
             ];
         }
 
@@ -43,7 +42,7 @@ final class MatchStatistics
     {
         return $this->teamStats[$teamId->value()] ?? [
             'goals' => 0,
-            'fouls' => 0
+            'fouls' => 0,
         ];
     }
 
@@ -61,7 +60,7 @@ final class MatchStatistics
     {
         return [
             'match_id' => $this->matchId->value(),
-            'teams' => $this->teamStats
+            'teams' => $this->teamStats,
         ];
     }
 }

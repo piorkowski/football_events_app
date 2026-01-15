@@ -69,7 +69,7 @@ final class FileStatisticsRepository implements StatisticsRepositoryInterface, S
     {
         $directory = dirname($this->filePath);
         if (!is_dir($directory)) {
-            mkdir($directory, 0777, true);
+            mkdir($directory, 0o777, true);
         }
     }
 

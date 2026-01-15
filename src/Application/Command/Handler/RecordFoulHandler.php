@@ -1,10 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Application\Command\Handler;
 
 use App\Application\Command\RecordFoulCommand;
-use App\Application\EventBus\EventBusInterface;
+use App\Application\MessageBus\CommandHandlerInterface;
+use App\Application\MessageBus\EventBusInterface;
 use App\Domain\Event\Foul;
 use App\Domain\Event\Repository\MatchEventRepositoryInterface;
 use App\Domain\Match\VO\MatchId;
@@ -12,7 +14,6 @@ use App\Domain\Player\VO\PlayerId;
 use App\Domain\Statistics\MatchStatistics;
 use App\Domain\Statistics\StatisticsRepositoryInterface;
 use App\Domain\Team\VO\TeamId;
-use App\Infrastructure\MessageBus\CommandHandlerInterface;
 
 final readonly class RecordFoulHandler implements CommandHandlerInterface
 {

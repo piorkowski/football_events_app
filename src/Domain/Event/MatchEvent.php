@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Domain\Event;
@@ -17,14 +18,13 @@ abstract class MatchEvent
         protected int $minute,
         protected int $second,
         protected ?DateTimeInterface $timestamp = null
-    )
-    {
-        $this->id = new MatchEventId(uniqid('', true));
+    ) {
+        $this->id = $id ?? new MatchEventId(uniqid('event_', true));
     }
 
-    public function id(): string
+    public function id(): MatchEventId
     {
-        return $this->id->value();
+        return $this->id;
     }
 
     abstract public function type(): EventType;

@@ -1,7 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
-namespace App\Application\EventBus;
+namespace App\Application\MessageBus;
 
 use App\Domain\Event\MatchEvent;
 

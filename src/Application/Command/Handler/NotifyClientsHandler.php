@@ -4,12 +4,14 @@ declare(strict_types=1);
 namespace App\Application\Command\Handler;
 
 use App\Application\Command\NotifyClientsCommand;
-use App\Infrastructure\MessageBus\CommandHandlerInterface;
-use App\Infrastructure\MessageBus\CommandInterface;
+use App\Application\MessageBus\CommandHandlerInterface;
 
 class NotifyClientsHandler implements CommandHandlerInterface
 {
-    public function __construct()
+    public function __construct(
+        private LoggerInterface $logger
+        private
+    )
     {
     }
 

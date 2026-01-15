@@ -1,13 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\UI\DTO;
 
-readonly abstract class StatisticsDTO
+abstract readonly class StatisticsDTO
 {
-        public function __construct(
-            public string $matchId,
-        )
-        {
-        }
+    public function __construct(
+        public string $matchId,
+    ) {}
 }

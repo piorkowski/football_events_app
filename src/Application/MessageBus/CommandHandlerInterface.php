@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\MessageBus;
+namespace App\Application\MessageBus;
 
 interface CommandHandlerInterface
 {
