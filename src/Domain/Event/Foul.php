@@ -21,7 +21,7 @@ final class Foul extends MatchEvent
         public ?DateTimeInterface $timestamp = new DateTimeImmutable(),
     )
     {
-        parent::__construct($matchId, $teamId, $minute, $this->second, $timestamp);
+        parent::__construct(null, $matchId, $teamId, $minute, $this->second, $timestamp);
     }
 
     public function type(): EventType
@@ -41,6 +41,7 @@ final class Foul extends MatchEvent
     public function toArray(): array
     {
         return [
+            'id' => $this->id->value(),
             'type' => $this->type()->value,
             'match_id' => $this->matchId->value(),
             'team_id' => $this->teamId->value(),

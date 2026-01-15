@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Domain\Client;
+namespace App\Domain\Event\VO;
 
 use App\Domain\Shared\ValueObject;
 use InvalidArgumentException;
 
-final class ClientNotificationData extends ValueObject
+final class MatchEventId extends ValueObject
 {
     private string $value;
 
     public function __construct(string $value)
     {
         if (empty(trim($value))) {
-            throw new InvalidArgumentException('Notification data cannot be empty');
+            throw new InvalidArgumentException('Match Event ID cannot be empty');
         }
 
         $this->value = $value;
