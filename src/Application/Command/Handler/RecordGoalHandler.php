@@ -23,7 +23,7 @@ final readonly class RecordGoalHandler implements CommandHandlerInterface
         private EventBusInterface             $eventBus
     ) {}
 
-    public function handle(RecordGoalCommand $command): void
+    public function handle(RecordGoalCommand $command): Goal
     {
         $goal = new Goal(
             matchId: new MatchId($command->eventDTO->matchId),

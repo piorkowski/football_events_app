@@ -23,7 +23,7 @@ final readonly class RecordFoulHandler implements CommandHandlerInterface
         private EventBusInterface             $eventBus
     ) {}
 
-    public function handle(RecordFoulCommand $command): void
+    public function handle(RecordFoulCommand $command): Foul
     {
         $foul = new Foul(
             matchId: new MatchId($command->eventDTO->matchId),
