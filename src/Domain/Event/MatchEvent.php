@@ -6,10 +6,11 @@ namespace App\Domain\Event;
 
 use App\Domain\Event\VO\MatchEventId;
 use App\Domain\Match\VO\MatchId;
+use App\Domain\Shared\AggregateRoot;
 use App\Domain\Team\VO\TeamId;
 use DateTimeInterface;
 
-abstract class MatchEvent
+abstract class MatchEvent extends AggregateRoot
 {
     public function __construct(
         protected ?MatchEventId $id,

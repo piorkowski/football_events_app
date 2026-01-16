@@ -22,7 +22,8 @@ class StatisticAction
         private QueryBusInterface   $queryBus
     ) {}
 
-    public function __invoke(GetStatisticsRequest $request): MatchStatisticsResponse|TeamStatisticsResponse {
+    public function __invoke(GetStatisticsRequest $request): MatchStatisticsResponse|TeamStatisticsResponse
+    {
         try {
             switch ($request) {
                 case $request->teamId !== null: {
@@ -40,7 +41,8 @@ class StatisticAction
         }
     }
 
-    private function mapRequestToTeamStatsDTO(GetStatisticsRequest $request): TeamStatisticsDTO {
+    private function mapRequestToTeamStatsDTO(GetStatisticsRequest $request): TeamStatisticsDTO
+    {
         return new TeamStatisticsDTO($request->teamId, $request->matchId);
     }
 

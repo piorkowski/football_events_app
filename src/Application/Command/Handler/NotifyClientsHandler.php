@@ -9,8 +9,8 @@ use App\Application\MessageBus\CommandHandlerInterface;
 class NotifyClientsHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private LoggerInterface $logger
-        private
+        private LoggerInterface $logger,
+        private NotificatorSenderInterface $notificatorSender
     )
     {
     }

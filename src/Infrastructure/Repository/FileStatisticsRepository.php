@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Repository;
 
 use App\Domain\Match\VO\MatchId;
@@ -55,24 +57,6 @@ final class FileStatisticsRepository implements StatisticsRepositoryInterface, S
         return $statistics;
     }
 
-    private function loadAll(): array
-    {
-        if (!file_exists($this->filePath)) {
-            return [];
-        }
-
-        $content = file_get_contents($this->filePath);
-        return json_decode($content, true) ?? [];
-    }
-
-    private function ensureDirectoryExists(): void
-    {
-        $directory = dirname($this->filePath);
-        if (!is_dir($directory)) {
-            mkdir($directory, 0o777, true);
-        }
-    }
-
     public function findForTeamByMatchId(TeamId $teamId, MatchId $matchId): ?MatchStatistics
     {
         $allStats = $this->loadAll();
@@ -95,5 +79,23 @@ final class FileStatisticsRepository implements StatisticsRepositoryInterface, S
         }
 
         return $statistics;
+    }
+
+    private function loadAll(): array
+    {
+        if (!file_exists($this->filePath)) {
+            return [];
+        }
+
+        $content = file_get_contents($this->filePath);
+        return json_decode($content, true) ?? [];
+    }
+
+    private function ensureDirectoryExists(): void
+    {
+        $directory = dirname($this->filePath);
+        if (!is_dir($directory)) {
+            mkdir($directory, 0o777, true);
+        }
     }
 }

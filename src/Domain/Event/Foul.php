@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Event;
 
+use App\Domain\Event\DomainEvent\FoulCommittedEvent;
+use App\Domain\Event\VO\MatchEventId;
 use App\Domain\Match\VO\MatchId;
 use App\Domain\Player\VO\PlayerId;
 use App\Domain\Team\VO\TeamId;
@@ -21,7 +23,9 @@ final class Foul extends MatchEvent
         public int                $second,
         public ?DateTimeInterface $timestamp = new DateTimeImmutable(),
     ) {
-        parent::__construct(null, $matchId, $teamId, $minute, $this->second, $timestamp);
+        parent::__construct(new MatchEventId(uniqid('foul_', true)), $matchId, $teamId, $minute, $this->second, $timestamp);
+
+        $this->raise(new FoulCommittedEvent($matchId, $teamId));
     }
 
     public function type(): EventType

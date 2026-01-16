@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\UI\Action;
 
 use App\Application\Command\RecordFoulCommand;
+use App\Application\Command\RecordGoalCommand;
 use App\Application\MessageBus\CommandBusInterface;
 use App\UI\DTO\FoulDTO;
 use App\UI\DTO\GoalDTO;
@@ -14,8 +15,8 @@ use Psr\Log\LoggerInterface;
 class EventAction
 {
     public function __construct(
-        private LoggerInterface     $logger,
-        private CommandBusInterface $commandBus
+        private readonly LoggerInterface $logger,
+        private readonly CommandBusInterface $commandBus
     )
     {
     }
@@ -27,21 +28,19 @@ class EventAction
                 case $request->type === 'goal':
                 {
                     $this->logger->info('Goal recording');
-                    $this->commandBus->dispatch(new RecordGoalCommand($this->mapToGoalDTO($request));
+                    $this->commandBus->dispatch(new RecordGoalCommand($this->mapToGoalDTO($request)));
                 }
                 case $request->type === 'foul':
                 {
                     $this->logger->info('Foul recording');
-                    $this->commandBus->dispatch(new RecordFoulCommand($this->mapToFoulDTO($request));
+                    $this->commandBus->dispatch(new RecordFoulCommand($this->mapToFoulDTO($request)));
                 }
                 default:
                 {
                     $this->logger->info('Event not recorded');
-                    return new CreateMatchEventResponse(false);
                 }
 
             }
-
         } catch (\Throwable $e) {
 
         }

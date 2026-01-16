@@ -23,7 +23,7 @@ final readonly class RecordFoulHandler implements CommandHandlerInterface
         private EventBusInterface             $eventBus
     ) {}
 
-    public function handle(RecordFoulCommand $command): Foul
+    public function handle(RecordFoulCommand $command): void
     {
         $foul = new Foul(
             matchId: new MatchId($command->eventDTO->matchId),
@@ -47,7 +47,5 @@ final readonly class RecordFoulHandler implements CommandHandlerInterface
         $this->statisticsRepository->save($statistics);
 
         $this->eventBus->publish($foul);
-
-        return $foul;
     }
 }
